@@ -2,8 +2,9 @@ module Embryo
   class Gemfile
     attr_accessor :path, :data
 
-    def initialize(path)
+    def initialize(path, generator: nil)
       @path = path
+      @generator = generator
       @data = File.read(path) if File.exist?(path)
     end
 
@@ -13,12 +14,12 @@ module Embryo
       @data.gsub!(/\n+$/, "\n")
     end
 
-    def write
-      File.open(path, "w") { |f| f.write data }
+    def write(force: false)
+      @generator.create_file path, data, force: force
     end
 
-    def self.current
-      new "Gemfile"
+    def self.current(generator: nil)
+      new "Gemfile", generator: generator
     end
   end
 end

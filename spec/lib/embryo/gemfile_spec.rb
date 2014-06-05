@@ -53,12 +53,20 @@ module Embryo
     end
 
     describe "#write" do
-      it "writes the current data to the file" do
-        tempfile = Tempfile.new "test"
-        gemfile = Gemfile.new tempfile.path
-        gemfile.data = "hello world"
+      it "delegates to create_file on the provided generator" do
+        generator = double
+        gemfile = Gemfile.new "myfile", generator: generator
+        gemfile.data = "mydata"
+        expect(generator).to receive(:create_file).with "myfile", "mydata", force: false
         gemfile.write
-        expect(File.read tempfile.path).to eq "hello world"
+      end
+
+      it "passes force:true to the create_file call if given" do
+        generator = double
+        gemfile = Gemfile.new "myfile", generator: generator
+        gemfile.data = "mydata"
+        expect(generator).to receive(:create_file).with "myfile", "mydata", force: true
+        gemfile.write force: true
       end
     end
   end
