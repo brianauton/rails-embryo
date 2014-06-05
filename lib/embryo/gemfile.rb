@@ -14,6 +14,13 @@ module Embryo
       @data.gsub!(/\n+$/, "\n")
     end
 
+    def require_gem(name, version, options = {})
+      @data << "\n" unless @data[-1] == "\n"
+      @data << "gem '#{name}', '#{version}'"
+      options.each { |key, value| @data << ", #{key}: #{value.inspect}" }
+      @data << "\n"
+    end
+
     def write(force: false)
       @generator.create_file path, data, force: force
     end

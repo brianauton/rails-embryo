@@ -52,6 +52,30 @@ module Embryo
       end
     end
 
+    describe "#require_gem" do
+      before do
+        @gemfile = Gemfile.new("bogus")
+      end
+
+      it "adds the given gem and options to the gemfile" do
+        @gemfile.data = "existing data"
+        @gemfile.require_gem "mygem", ">= 1.2.3"
+        expect(@gemfile.data).to eq "existing data\ngem 'mygem', '>= 1.2.3'\n"
+      end
+
+      it "adds any additional symbol options as symbols" do
+        @gemfile.data = "existing data"
+        @gemfile.require_gem "mygem", "0", option: :value
+        expect(@gemfile.data).to eq "existing data\ngem 'mygem', '0', option: :value\n"
+      end
+
+      it "adds any additional string options as strings" do
+        @gemfile.data = "existing data"
+        @gemfile.require_gem "mygem", "0", option: "value"
+        expect(@gemfile.data).to eq "existing data\ngem 'mygem', '0', option: \"value\"\n"
+      end
+    end
+
     describe "#write" do
       it "delegates to create_file on the provided generator" do
         generator = double
