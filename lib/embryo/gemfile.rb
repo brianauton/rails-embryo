@@ -5,7 +5,7 @@ module Embryo
     def initialize(path, generator: nil)
       @path = path
       @generator = generator
-      @data = File.read(path) if File.exist?(path)
+      @data = File.exist?(path) ? File.read(path) : ""
     end
 
     def remove_noise
