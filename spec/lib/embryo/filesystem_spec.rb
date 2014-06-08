@@ -29,6 +29,13 @@ module Embryo
         expect(gemfile).to receive(:write)
         Filesystem.new(double).commit_changes
       end
+
+      it "passes along any write_options received" do
+        gemfile = double
+        expect(Gemfile).to receive(:current) { gemfile }
+        expect(gemfile).to receive(:write).with force: true
+        Filesystem.new(double, force: true).commit_changes
+      end
     end
   end
 end

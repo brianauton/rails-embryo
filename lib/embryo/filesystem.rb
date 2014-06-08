@@ -2,8 +2,9 @@ require "embryo/gemfile"
 
 module Embryo
   class Filesystem
-    def initialize(generator)
+    def initialize(generator, *write_options)
       @generator = generator
+      @write_options = write_options
     end
 
     def require_gem(*args)
@@ -11,7 +12,7 @@ module Embryo
     end
 
     def commit_changes
-      gemfile.write
+      gemfile.write(*@write_options)
     end
 
     private
