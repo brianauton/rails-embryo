@@ -31,6 +31,15 @@ describe EmbryoGenerator do
         expect(File.exist? "spec/support/capybara.rb").to be_truthy
       end
     end
+
+    it "creates the default dashboard controller" do
+      with_files do
+        install_new_generator
+        expect(File.exist? "app/controllers/dashboard_controller.rb").to be_truthy
+        expect(File.exist? "spec/controllers/dashboard_controller_spec.rb").to be_truthy
+        expect(File.exist? "spec/features/dashboard_spec.rb").to be_truthy
+      end
+    end
   end
 
   def install_new_generator

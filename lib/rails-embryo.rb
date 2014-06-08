@@ -1,12 +1,14 @@
 require "rails/generators"
 require "embryo/filesystem"
 require "embryo/test_support"
+require "embryo/default_view"
 
 class EmbryoGenerator < Rails::Generators::Base
   def install(*write_options)
     @write_options = write_options
     clean_files
     Embryo::TestSupport.new(filesystem).install
+    Embryo::DefaultView.new(filesystem).install
     filesystem.commit_changes
   end
 
