@@ -11,19 +11,21 @@ describe EmbryoGenerator do
       end
     end
 
-    it "adds rspec to the Gemfile" do
+    it "adds required gems to the Gemfile" do
       with_files do
         install_new_generator
         expect { EmbryoGenerator.new.install force: true }.to output.to_stdout
-        expect(File.read "Gemfile").to include "rspec"
+        expect(File.read "Gemfile").to include "rspec-rails"
+        expect(File.read "Gemfile").to include "factory_girl_rails"
       end
     end
 
-    it "creates rspec config files" do
+    it "creates required config files" do
       with_files do
         install_new_generator
         expect(File.exist? "spec/spec_helper.rb").to be_truthy
         expect(File.exist? "spec/rails_helper.rb").to be_truthy
+        expect(File.exist? "spec/support/factory_girl.rb").to be_truthy
       end
     end
   end

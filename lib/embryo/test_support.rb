@@ -8,8 +8,10 @@ module Embryo
 
     def install
       @filesystem.require_gem "rspec-rails", "~> 3.0", group: :test
+      @filesystem.require_gem "factory_girl_rails", "~> 4.0", group: :test
       @filesystem.write "spec/spec_helper.rb", spec_helper_data
       @filesystem.write "spec/rails_helper.rb", rails_helper_data
+      @filesystem.write "spec/support/factory_girl.rb", factory_girl_helper_data
     end
 
     def spec_helper_data
@@ -34,6 +36,13 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
+end
+'
+    end
+
+    def factory_girl_helper_data
+'RSpec.configure do |config|
+  config.include FactoryGirl::Syntax::Methods
 end
 '
     end
