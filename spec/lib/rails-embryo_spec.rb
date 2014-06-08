@@ -5,6 +5,7 @@ describe EmbryoGenerator do
   describe "#install" do
     it "rewrites Gemfile with comments and whitespace removed" do
       with_files "Gemfile" => "#test\ndata" do
+        install_new_generator
         expect { EmbryoGenerator.new.install force: true }.to output.to_stdout
         expect(File.read "Gemfile").not_to include "#test"
       end
@@ -12,10 +13,23 @@ describe EmbryoGenerator do
 
     it "adds rspec to the Gemfile" do
       with_files do
+        install_new_generator
         expect { EmbryoGenerator.new.install force: true }.to output.to_stdout
         expect(File.read "Gemfile").to include "rspec"
       end
     end
+
+    it "creates rspec config files" do
+      with_files do
+        install_new_generator
+        expect(File.exist? "spec/spec_helper.rb").to be_truthy
+        expect(File.exist? "spec/rails_helper.rb").to be_truthy
+      end
+    end
+  end
+
+  def install_new_generator
+    expect { EmbryoGenerator.new.install force: true }.to output.to_stdout
   end
 
   def with_files(files = {})

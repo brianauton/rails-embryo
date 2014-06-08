@@ -30,6 +30,15 @@ module Embryo
       end
     end
 
+    describe "#write" do
+      it "doesn't write the file immediately" do
+        generator = double
+        filesystem = Filesystem.new generator
+        expect(generator).not_to receive :create_file
+        filesystem.write "myfile", "mydata"
+      end
+    end
+
     describe "#commit_changes" do
       before do
         @gemfile = double
@@ -47,6 +56,14 @@ module Embryo
         filesystem = Filesystem.new double, force: true
         expect(@gemfile).to receive(:write).with force: true
         filesystem.gemfile
+        filesystem.commit_changes
+      end
+
+      it "commits any files written with #write" do
+        generator = double
+        filesystem = Filesystem.new generator
+        filesystem.write "myfile", "mydata"
+        expect(generator).to receive(:create_file).with "myfile", "mydata"
         filesystem.commit_changes
       end
     end
