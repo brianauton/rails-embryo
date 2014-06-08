@@ -1,7 +1,7 @@
 require "embryo/gemfile"
 
 module Embryo
-  class Rspec
+  class TestSupport
     def initialize(gemfile)
       @gemfile = gemfile
     end
