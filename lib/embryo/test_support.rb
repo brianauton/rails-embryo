@@ -1,5 +1,3 @@
-require "embryo/gemfile"
-
 module Embryo
   class TestSupport
     def initialize(filesystem)
