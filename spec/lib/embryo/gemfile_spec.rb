@@ -74,6 +74,12 @@ module Embryo
         @gemfile.require_gem "mygem", "0", option: "value"
         expect(@gemfile.data).to eq "existing data\ngem 'mygem', '0', option: \"value\"\n"
       end
+
+      it "removes any preexisting reference to the gem" do
+        @gemfile.data = "line1\ngem 'mygem'\nline2"
+        @gemfile.require_gem "mygem", "0"
+        expect(@gemfile.data).to eq "line1\nline2\ngem 'mygem', '0'\n"
+      end
     end
 
     describe "#write" do
