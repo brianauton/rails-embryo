@@ -9,8 +9,11 @@ module Embryo
     def install
       @filesystem.require_gem "rspec-rails", "~> 3.0", group: :test
       @filesystem.require_gem "factory_girl_rails", "~> 4.0", group: :test
+      @filesystem.require_gem "capybara", "~> 2.0", group: :test
+      @filesystem.require_gem "launchy", "~> 2.0", group: :test
       @filesystem.write "spec/spec_helper.rb", spec_helper_data
       @filesystem.write "spec/rails_helper.rb", rails_helper_data
+      @filesystem.write "spec/support/capybara.rb", capybara_helper_data
       @filesystem.write "spec/support/factory_girl.rb", factory_girl_helper_data
     end
 
@@ -43,6 +46,15 @@ end
     def factory_girl_helper_data
 'RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
+end
+'
+    end
+
+    def capybara_helper_data
+'require "capybara/rails"
+require "capybara/rspec"
+RSpec.configure do |config|
+  config.include Capybara::DSL, type: :feature
 end
 '
     end

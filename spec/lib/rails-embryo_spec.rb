@@ -17,6 +17,8 @@ describe EmbryoGenerator do
         expect { EmbryoGenerator.new.install force: true }.to output.to_stdout
         expect(File.read "Gemfile").to include "rspec-rails"
         expect(File.read "Gemfile").to include "factory_girl_rails"
+        expect(File.read "Gemfile").to include "capybara"
+        expect(File.read "Gemfile").to include "launchy"
       end
     end
 
@@ -26,6 +28,7 @@ describe EmbryoGenerator do
         expect(File.exist? "spec/spec_helper.rb").to be_truthy
         expect(File.exist? "spec/rails_helper.rb").to be_truthy
         expect(File.exist? "spec/support/factory_girl.rb").to be_truthy
+        expect(File.exist? "spec/support/capybara.rb").to be_truthy
       end
     end
   end
