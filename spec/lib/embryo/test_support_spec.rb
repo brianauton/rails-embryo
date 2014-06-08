@@ -7,20 +7,20 @@ module Embryo
         @required_gems = ["rspec-rails"]
       end
 
-      it "adds all required gems to the given gemfile" do
-        gemfile = double
+      it "adds all required gems to the given filesystem" do
+        filesystem = double
         @required_gems.each do |gem_name|
-          expect(gemfile).to receive(:require_gem).with gem_name, anything, anything
+          expect(filesystem).to receive(:require_gem).with gem_name, anything, anything
         end
-        TestSupport.new(gemfile).install
+        TestSupport.new(filesystem).install
       end
 
       it "adds testing gems to the test group" do
-        gemfile = double
+        filesystem = double
         @required_gems.each do |gem_name|
-          expect(gemfile).to receive(:require_gem).with gem_name, anything, hash_including(group: :test)
+          expect(filesystem).to receive(:require_gem).with gem_name, anything, hash_including(group: :test)
         end
-        TestSupport.new(gemfile).install
+        TestSupport.new(filesystem).install
       end
     end
   end

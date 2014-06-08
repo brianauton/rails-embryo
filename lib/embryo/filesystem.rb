@@ -7,15 +7,9 @@ module Embryo
       @write_options = write_options
     end
 
-    def require_gem(*args)
-      gemfile.require_gem(*args)
-    end
-
     def commit_changes
-      gemfile.write(*@write_options)
+      @gemfile.write(*@write_options) if @gemfile
     end
-
-    private
 
     def gemfile
       @gemfile ||= Gemfile.current generator: @generator

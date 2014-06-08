@@ -1,4 +1,5 @@
 require "rails-embryo"
+require "tmpdir"
 
 describe EmbryoGenerator do
   describe "#install" do

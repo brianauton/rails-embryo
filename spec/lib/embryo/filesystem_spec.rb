@@ -3,38 +3,41 @@ require "embryo/gemfile"
 
 module Embryo
   describe Filesystem do
-    describe "#require_gem" do
-      it "delegates to a current gemfile created with the given generator" do
-        gemfile, generator = double, double
-        expect(Gemfile).to receive(:current).with(generator: generator) { gemfile }
-        expect(gemfile).to receive(:require_gem).with "mygem", "myversion", myoption: :myvalue
-        Filesystem.new(generator).require_gem "mygem", "myversion", myoption: :myvalue
+    describe "#gemfile" do
+      before do
+        @gemfile, @generator = double, double
+        expect(Gemfile).to receive(:current).with(generator: @generator) { @gemfile }
       end
 
-      it "passes multiple calls to the same gemfile" do
-        gemfile = double
-        expect(Gemfile).to receive(:current) { gemfile }
-        expect(gemfile).to receive(:require_gem).with "gem1", "0"
-        expect(gemfile).to receive(:require_gem).with "gem2", "0"
-        filesystem = Filesystem.new double
-        filesystem.require_gem "gem1", "0"
-        filesystem.require_gem "gem2", "0"
+      it "returns a current gemfile created with the given generator" do
+        expect(Filesystem.new(@generator).gemfile).to eq @gemfile
+      end
+
+      it "returns the same gemfile object from multiple calls" do
+        filesystem = Filesystem.new @generator
+        expect(filesystem.gemfile).to eq @gemfile
+        expect(filesystem.gemfile).to eq @gemfile
       end
     end
 
     describe "#commit_changes" do
+      before do
+        @gemfile = double
+        allow(Gemfile).to receive(:current) { @gemfile }
+      end
+
       it "writes the gemfile" do
-        gemfile = double
-        expect(Gemfile).to receive(:current) { gemfile }
-        expect(gemfile).to receive(:write)
-        Filesystem.new(double).commit_changes
+        filesystem = Filesystem.new double
+        expect(@gemfile).to receive(:write)
+        filesystem.gemfile
+        filesystem.commit_changes
       end
 
       it "passes along any write_options received" do
-        gemfile = double
-        expect(Gemfile).to receive(:current) { gemfile }
-        expect(gemfile).to receive(:write).with force: true
-        Filesystem.new(double, force: true).commit_changes
+        filesystem = Filesystem.new double, force: true
+        expect(@gemfile).to receive(:write).with force: true
+        filesystem.gemfile
+        filesystem.commit_changes
       end
     end
   end
