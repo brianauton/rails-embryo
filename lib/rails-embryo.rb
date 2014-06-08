@@ -6,7 +6,7 @@ class EmbryoGenerator < Rails::Generators::Base
   def install(*write_options)
     @write_options = write_options
     clean_files
-    Embryo::TestSupport.new(gemfile).install
+    Embryo::TestSupport.new(filesystem).install
     filesystem.commit_changes
   end
 

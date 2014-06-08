@@ -20,6 +20,16 @@ module Embryo
       end
     end
 
+    describe "#require_gem" do
+      it "delegates to gemfile" do
+        gemfile = double
+        filesystem = Filesystem.new(double)
+        allow(filesystem).to receive(:gemfile) { gemfile }
+        expect(gemfile).to receive(:require_gem).with "myargs"
+        filesystem.require_gem "myargs"
+      end
+    end
+
     describe "#commit_changes" do
       before do
         @gemfile = double

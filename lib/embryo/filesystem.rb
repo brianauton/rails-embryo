@@ -11,6 +11,10 @@ module Embryo
       @gemfile.write(*@write_options) if @gemfile
     end
 
+    def require_gem(*args)
+      gemfile.require_gem(*args)
+    end
+
     def gemfile
       @gemfile ||= Gemfile.current generator: @generator
     end
