@@ -66,6 +66,16 @@ module Embryo
         expect(generator).to receive(:create_file).with "myfile", "mydata"
         filesystem.commit_changes
       end
+
+      it "writes files in alphabetical order" do
+        generator = double
+        filesystem = Filesystem.new generator
+        filesystem.write "bfile", "mydata"
+        filesystem.write "afile", "mydata"
+        expect(generator).to receive(:create_file).with("afile", "mydata").ordered
+        expect(generator).to receive(:create_file).with("bfile", "mydata").ordered
+        filesystem.commit_changes
+      end
     end
   end
 end
