@@ -16,6 +16,8 @@ module Embryo
 
       it "creates the required templates" do
         expect(@filesystem).to receive(:write).with "app/views/layouts/application.html.haml", a_string_including("%html")
+        expect(@filesystem).to receive(:write).with "app/views/layouts/_navigation.html.haml", a_string_including("%ul.nav.navbar-nav")
+        expect(@filesystem).to receive(:write).with "app/views/layouts/_messages.html.haml", a_string_including(".alert")
         TemplateSupport.new(@filesystem).install
       end
 

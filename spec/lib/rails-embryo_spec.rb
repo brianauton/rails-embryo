@@ -46,6 +46,8 @@ describe EmbryoGenerator do
       with_files do
         install_new_generator
         expect(File.exist? "app/views/layouts/application.html.haml").to be_truthy
+        expect(File.exist? "app/views/layouts/_navigation.html.haml").to be_truthy
+        expect(File.exist? "app/views/layouts/_messages.html.haml").to be_truthy
       end
     end
   end
