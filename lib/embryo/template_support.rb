@@ -9,6 +9,7 @@ module Embryo
       @filesystem.require_gem "haml-rails", ">= 0"
       @filesystem.require_gem "bootstrap-sass", "~> 3.0"
       @filesystem.write "app/views/layouts/application.html.haml", layout_data
+      @filesystem.delete "app/views/layouts/application.html.erb"
     end
 
     def layout_data

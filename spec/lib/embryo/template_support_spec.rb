@@ -4,7 +4,7 @@ module Embryo
   describe TemplateSupport do
     describe "#install" do
       before do
-        @filesystem = double require_gem: nil, write: nil
+        @filesystem = double require_gem: nil, write: nil, delete: nil
       end
 
       it "adds required gems" do
@@ -16,6 +16,11 @@ module Embryo
 
       it "creates the required templates" do
         expect(@filesystem).to receive(:write).with "app/views/layouts/application.html.haml", a_string_including("%html")
+        TemplateSupport.new(@filesystem).install
+      end
+
+      it "deletes the correct files" do
+        expect(@filesystem).to receive(:delete).with "app/views/layouts/application.html.erb"
         TemplateSupport.new(@filesystem).install
       end
     end

@@ -10,7 +10,13 @@ module Embryo
 
     def commit_changes
       @gemfile.write(*@write_options) if @gemfile
-      sorted_cache.each { |path, data| @generator.create_file path, data, *@write_options }
+      sorted_cache.each do |path, data|
+        if data
+          @generator.create_file path, data, *@write_options
+        else
+          @generator.remove_file path, *@write_options if File.exist? path
+        end
+      end
     end
 
     def sorted_cache
@@ -27,6 +33,10 @@ module Embryo
 
     def write(path, data)
       @write_cache[path] = data
+    end
+
+    def delete(path)
+      @write_cache[path] = nil
     end
   end
 end
