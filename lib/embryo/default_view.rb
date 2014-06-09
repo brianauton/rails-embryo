@@ -16,7 +16,7 @@ module Embryo
     def controller_data
 'class DashboardController < ApplicationController
   def index
-    render text: "Welcome"
+    render text: "Welcome", layout: "application"
   end
 end
 '
