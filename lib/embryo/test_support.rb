@@ -9,10 +9,12 @@ module Embryo
       @filesystem.require_gem "factory_girl_rails", "~> 4.0", group: :test
       @filesystem.require_gem "capybara", "~> 2.0", group: :test
       @filesystem.require_gem "launchy", "~> 2.0", group: :test
+      @filesystem.require_gem "poltergeist", "~> 1.0", group: :test
       @filesystem.write "spec/spec_helper.rb", spec_helper_data
       @filesystem.write "spec/rails_helper.rb", rails_helper_data
       @filesystem.write "spec/support/capybara.rb", capybara_helper_data
       @filesystem.write "spec/support/factory_girl.rb", factory_girl_helper_data
+      @filesystem.write "spec/support/poltergeist.rb", poltergeist_helper_data
     end
 
     def spec_helper_data
@@ -54,6 +56,12 @@ require "capybara/rspec"
 RSpec.configure do |config|
   config.include Capybara::DSL, type: :feature
 end
+'
+    end
+
+    def poltergeist_helper_data
+'require "capybara/poltergeist"
+Capybara.javascript_driver = :poltergeist
 '
     end
   end

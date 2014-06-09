@@ -29,6 +29,7 @@ describe EmbryoGenerator do
         expect(File.exist? "spec/rails_helper.rb").to be_truthy
         expect(File.exist? "spec/support/factory_girl.rb").to be_truthy
         expect(File.exist? "spec/support/capybara.rb").to be_truthy
+        expect(File.exist? "spec/support/poltergeist.rb").to be_truthy
       end
     end
 

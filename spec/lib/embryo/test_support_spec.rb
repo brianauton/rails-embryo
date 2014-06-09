@@ -4,7 +4,7 @@ module Embryo
   describe TestSupport do
     describe "#install" do
       before do
-        @required_gems = ["rspec-rails", "factory_girl_rails", "capybara", "launchy"]
+        @required_gems = ["rspec-rails", "factory_girl_rails", "capybara", "launchy", "poltergeist"]
         @filesystem = double require_gem: nil, write: nil
       end
 
