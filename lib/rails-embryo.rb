@@ -2,6 +2,7 @@ require "rails/generators"
 require "rails/generators/app_base"
 require "embryo/filesystem"
 require "embryo/test_support"
+require "embryo/template_support"
 require "embryo/default_view"
 
 class EmbryoGenerator < Rails::Generators::Base
@@ -9,6 +10,7 @@ class EmbryoGenerator < Rails::Generators::Base
     @force = force
     clean_files
     Embryo::TestSupport.new(filesystem).install
+    Embryo::TemplateSupport.new(filesystem).install
     Embryo::DefaultView.new(filesystem).install
     filesystem.commit_changes
     update_bundle if bundle

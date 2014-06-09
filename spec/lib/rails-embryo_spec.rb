@@ -17,6 +17,8 @@ describe EmbryoGenerator do
         expect(File.read "Gemfile").to include "factory_girl_rails"
         expect(File.read "Gemfile").to include "capybara"
         expect(File.read "Gemfile").to include "launchy"
+        expect(File.read "Gemfile").to include "haml-rails"
+        expect(File.read "Gemfile").to include "bootstrap-sass"
       end
     end
 
@@ -37,6 +39,13 @@ describe EmbryoGenerator do
         expect(File.exist? "app/controllers/dashboard_controller.rb").to be_truthy
         expect(File.exist? "spec/controllers/dashboard_controller_spec.rb").to be_truthy
         expect(File.exist? "spec/features/dashboard_spec.rb").to be_truthy
+      end
+    end
+
+    it "creates the haml layout" do
+      with_files do
+        install_new_generator
+        expect(File.exist? "app/views/layouts/application.html.haml").to be_truthy
       end
     end
   end
