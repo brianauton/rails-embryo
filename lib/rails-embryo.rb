@@ -5,13 +5,13 @@ require "embryo/test_support"
 require "embryo/default_view"
 
 class EmbryoGenerator < Rails::Generators::Base
-  def install(*write_options)
-    @write_options = write_options
+  def install(force: false, bundle: true)
+    @force = force
     clean_files
     Embryo::TestSupport.new(filesystem).install
     Embryo::DefaultView.new(filesystem).install
     filesystem.commit_changes
-    update_bundle
+    update_bundle if bundle
   end
 
   private
@@ -21,7 +21,7 @@ class EmbryoGenerator < Rails::Generators::Base
   end
 
   def filesystem
-    @filesystem ||= Embryo::Filesystem.new self, *@write_options
+    @filesystem ||= Embryo::Filesystem.new self, force: @force
   end
 
   def gemfile
