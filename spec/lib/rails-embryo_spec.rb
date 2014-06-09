@@ -50,6 +50,14 @@ describe EmbryoGenerator do
         expect(File.exist? "app/views/layouts/_messages.html.haml").to be_truthy
       end
     end
+
+    it "updates the assets" do
+      with_files do
+        install_new_generator
+        expect(File.read "app/assets/javascripts/application.js").to include "bootstrap"
+        expect(File.read "app/assets/stylesheets/bootstrap-custom.css.scss").to include "bootstrap"
+      end
+    end
   end
 
   def install_new_generator

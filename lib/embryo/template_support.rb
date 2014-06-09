@@ -11,6 +11,8 @@ module Embryo
       @filesystem.write "app/views/layouts/application.html.haml", layout_data
       @filesystem.write "app/views/layouts/_navigation.html.haml", navigation_data
       @filesystem.write "app/views/layouts/_messages.html.haml", messages_data
+      @filesystem.write "app/assets/javascripts/application.js", javascript_data
+      @filesystem.write "app/assets/stylesheets/bootstrap-custom.css.scss", stylesheet_data
       @filesystem.delete "app/views/layouts/application.html.erb"
     end
 
@@ -55,6 +57,22 @@ module Embryo
     .alert(class="alert-#{alert_type}")
       %button.close(type="button" data-dismiss="alert" aria-hidden="true") &times;
       = flash[flash_key]
+'
+    end
+
+    def javascript_data
+'//= require jquery
+//= require jquery_ujs
+//= require bootstrap
+//= require turbolinks
+//= require_tree .
+'
+    end
+
+    def stylesheet_data
+'@import "bootstrap";
+@import "bootstrap/theme";
+body { padding-top: 70px; }
 '
     end
   end
