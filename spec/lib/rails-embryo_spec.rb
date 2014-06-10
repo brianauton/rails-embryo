@@ -13,6 +13,7 @@ describe EmbryoGenerator do
     it "adds required gems to the Gemfile" do
       with_files do
         install_new_generator
+        expect(File.read "Gemfile").to include "rails-embryo"
         expect(File.read "Gemfile").to include "rspec-rails"
         expect(File.read "Gemfile").to include "factory_girl_rails"
         expect(File.read "Gemfile").to include "capybara"

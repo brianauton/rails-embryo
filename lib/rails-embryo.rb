@@ -10,6 +10,7 @@ class EmbryoGenerator < Rails::Generators::Base
   def install(force: false, bundle: false)
     @force = force || options.force?
     clean_files
+    add_embryo_gem
     Embryo::RubyVersion.new(filesystem).install
     Embryo::TestSupport.new(filesystem).install
     Embryo::TemplateSupport.new(filesystem).install
@@ -22,6 +23,10 @@ class EmbryoGenerator < Rails::Generators::Base
 
   def clean_files
     gemfile.remove_noise
+  end
+
+  def add_embryo_gem
+    filesystem.require_gem "rails-embryo", "~> #{Rails::Embryo::VERSION}"
   end
 
   def filesystem
