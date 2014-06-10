@@ -1,6 +1,7 @@
 require "rails/generators"
 require "rails/generators/app_base"
 require "embryo/filesystem"
+require "embryo/ruby_version"
 require "embryo/test_support"
 require "embryo/template_support"
 require "embryo/default_view"
@@ -9,6 +10,7 @@ class EmbryoGenerator < Rails::Generators::Base
   def install(force: false, bundle: false)
     @force = force || options.force?
     clean_files
+    Embryo::RubyVersion.new(filesystem).install
     Embryo::TestSupport.new(filesystem).install
     Embryo::TemplateSupport.new(filesystem).install
     Embryo::DefaultView.new(filesystem).install

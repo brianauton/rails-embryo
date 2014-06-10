@@ -58,6 +58,14 @@ describe EmbryoGenerator do
         expect(File.read "app/assets/stylesheets/bootstrap-custom.css.scss").to include "bootstrap"
       end
     end
+
+    it "creates the ruby version configuration files" do
+      with_files do
+        install_new_generator
+        expect(File.exist? ".ruby-version").to be_truthy
+        expect(File.exist? ".ruby-gemset").to be_truthy
+      end
+    end
   end
 
   def install_new_generator
