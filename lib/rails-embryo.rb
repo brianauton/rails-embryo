@@ -7,7 +7,7 @@ require "embryo/default_view"
 
 class EmbryoGenerator < Rails::Generators::Base
   def install(force: false, bundle: true)
-    @force = force
+    @force = force || options.force?
     clean_files
     Embryo::TestSupport.new(filesystem).install
     Embryo::TemplateSupport.new(filesystem).install
