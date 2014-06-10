@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.authors = ["Brian Auton"]
   s.email = ["brianauton@gmail.com"]
   s.homepage = "http://github.com/brianauton/rails-embryo"
-  s.summary = "Easy access to advanced Rails practices via generators"
+  s.summary = "Generators for quick setup of advanced Rails practices"
   s.license = "MIT"
   s.required_rubygems_version = ">= 1.3.6"
   s.files = Dir.glob("lib/**/*") + ["README.md", "History.md", "License.txt"]
