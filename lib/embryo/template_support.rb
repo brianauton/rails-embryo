@@ -23,7 +23,7 @@ module Embryo
     %meta(charset="utf-8")
     %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    %title Application
+    %title ' + @filesystem.application_human_name + '
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data_turbolinks_track" => true
     = csrf_meta_tags
@@ -44,7 +44,7 @@ module Embryo
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to "Application", root_path, class: "navbar-brand"
+      = link_to "' + @filesystem.application_human_name + '", root_path, class: "navbar-brand"
     .navbar-collapse.collapse
       %ul.nav.navbar-nav
         %li= link_to "Home", root_path

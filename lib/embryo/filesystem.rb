@@ -1,4 +1,6 @@
 require "embryo/gemfile"
+require "tmpdir"
+require "active_support/inflector"
 
 module Embryo
   class Filesystem
@@ -37,6 +39,14 @@ module Embryo
 
     def delete(path)
       @write_cache[path] = nil
+    end
+
+    def application_name
+      File.basename Dir.getwd
+    end
+
+    def application_human_name
+      application_name.titleize
     end
   end
 end

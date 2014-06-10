@@ -107,5 +107,30 @@ module Embryo
         filesystem.commit_changes
       end
     end
+
+    describe "application_name" do
+      it "uses the name of the current directory" do
+        in_directory_named "part1/part2" do
+          filesystem = Filesystem.new double
+          expect(filesystem.application_name).to eq "part2"
+        end
+      end
+    end
+
+    describe "application_human_name" do
+      it "uses the humanized name of the current directory" do
+        in_directory_named "part1/multi_part_name" do
+          filesystem = Filesystem.new double
+          expect(filesystem.application_human_name).to eq "Multi Part Name"
+        end
+      end
+    end
+
+    def in_directory_named(name, &block)
+      Dir.mktmpdir do |dir|
+        FileUtils.mkdir_p "dir/#{name}"
+        Dir.chdir "dir/#{name}", &block
+      end
+    end
   end
 end

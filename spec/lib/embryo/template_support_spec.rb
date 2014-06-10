@@ -4,7 +4,7 @@ module Embryo
   describe TemplateSupport do
     describe "#install" do
       before do
-        @filesystem = double require_gem: nil, write: nil, delete: nil
+        @filesystem = double require_gem: nil, write: nil, delete: nil, application_human_name: "none"
       end
 
       it "adds required gems" do
