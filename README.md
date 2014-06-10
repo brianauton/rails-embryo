@@ -40,9 +40,9 @@ and then run Bundler to configure the gems for your new application.
     bundle install
 
 Your new application will have a working test suite, and you can run
-it with Rake.
+it by invoking RSpec (or Rake, but RSpec is faster).
 
-    rake
+    rspec
 
 It's also ready to run with the Rails server, so fire up the server
 and visit localhost:3000 to see your application's
