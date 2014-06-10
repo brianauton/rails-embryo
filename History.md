@@ -1,3 +1,8 @@
+### Version 0.1.1
+2014-6-10
+
+* Minor bugfix for running the gem-installed binary
+
 ### Version 0.1.0
 2014-6-10
 
