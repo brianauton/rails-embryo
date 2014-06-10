@@ -12,6 +12,7 @@ module Embryo
 
     def spec_helper_data
 'RSpec.configure do |config|
+  config.color = true
   config.order = :random
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
