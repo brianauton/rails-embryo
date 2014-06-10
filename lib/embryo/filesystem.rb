@@ -8,6 +8,7 @@ module Embryo
       @generator = generator
       @write_options = write_options
       @write_cache = {}
+      @gemfile = nil
     end
 
     def commit_changes
