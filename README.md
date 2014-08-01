@@ -16,12 +16,12 @@ configurable in the future.
 ### Requirements
 
 * Ruby 1.9.3 or newer
-* Rails 4.1.1 or newer
+* Rails 4.1.4 or newer
 
 ### Getting Started
 
 Make sure the gem is installed in your current environment (this will
-also install Rails 4.1.1 if it's not already present).
+also install Rails 4.1.4 if it's not already present).
 
     gem install rails-embryo
 
