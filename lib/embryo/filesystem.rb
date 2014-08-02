@@ -1,4 +1,3 @@
-require "embryo/gemfile"
 require "tmpdir"
 require "active_support/inflector"
 
@@ -8,11 +7,9 @@ module Embryo
       @generator = generator
       @write_options = write_options
       @write_cache = {}
-      @gemfile = nil
     end
 
     def commit_changes
-      @gemfile.write(*@write_options) if @gemfile
       sorted_cache.each do |path, data|
         if data
           @generator.create_file path, data, *@write_options
@@ -24,14 +21,6 @@ module Embryo
 
     def sorted_cache
       @write_cache.sort.to_h
-    end
-
-    def require_gem(*args)
-      gemfile.require_gem(*args)
-    end
-
-    def gemfile
-      @gemfile ||= Gemfile.current generator: @generator
     end
 
     def write(path, data)
