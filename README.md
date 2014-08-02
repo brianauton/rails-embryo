@@ -2,7 +2,6 @@
 [![Gem Version](https://badge.fury.io/rb/rails-embryo.png)](http://badge.fury.io/rb/rails-embryo)
 [![Build Status](https://travis-ci.org/brianauton/rails-embryo.png?branch=master)](https://travis-ci.org/brianauton/rails-embryo)
 [![Code Climate](https://codeclimate.com/github/brianauton/rails-embryo.png)](https://codeclimate.com/github/brianauton/rails-embryo)
-[![Dependency Status](https://gemnasium.com/brianauton/rails-embryo.png)](https://gemnasium.com/brianauton/rails-embryo)
 
 Rails-embryo is a Ruby gem that helps get a new Rails application up and
 running quickly. In just one step, it adds many of the the tweaks and
