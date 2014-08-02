@@ -1,4 +1,4 @@
-require "rails-embryo/generators/embryo/ruby_version"
+require "generators/embryo/ruby_version"
 
 module Embryo
   describe RubyVersionGenerator do
