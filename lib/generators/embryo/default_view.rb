@@ -1,14 +1,12 @@
-module Embryo
-  class DefaultView
-    def initialize(filesystem)
-      @filesystem = filesystem
-    end
+require "rails/generators"
 
+module Embryo
+  class DefaultViewGenerator < Rails::Generators::Base
     def install
-      @filesystem.write "config/routes.rb", routes_data
-      @filesystem.write "app/controllers/dashboard_controller.rb", controller_data
-      @filesystem.write "spec/controllers/dashboard_controller_spec.rb", controller_spec_data
-      @filesystem.write "spec/features/dashboard_spec.rb", feature_spec_data
+      create_file "config/routes.rb", routes_data
+      create_file "app/controllers/dashboard_controller.rb", controller_data
+      create_file "spec/controllers/dashboard_controller_spec.rb", controller_spec_data
+      create_file "spec/features/dashboard_spec.rb", feature_spec_data
     end
 
     private

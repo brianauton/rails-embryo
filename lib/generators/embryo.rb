@@ -1,9 +1,9 @@
 require "rails/generators"
 require "generators/embryo/ruby_version"
+require "generators/embryo/default_view"
 require "embryo/filesystem"
 require "embryo/test_support"
 require "embryo/template_support"
-require "embryo/default_view"
 
 class EmbryoGenerator < Rails::Generators::Base
   def install(force: false, bundle: false)
@@ -13,7 +13,7 @@ class EmbryoGenerator < Rails::Generators::Base
     invoke "embryo:ruby_version"
     Embryo::TestSupport.new(filesystem).install
     Embryo::TemplateSupport.new(filesystem).install
-    Embryo::DefaultView.new(filesystem).install
+    invoke "embryo:default_view"
     filesystem.commit_changes
     update_bundle if bundle
   end

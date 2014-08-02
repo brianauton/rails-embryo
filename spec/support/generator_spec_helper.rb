@@ -1,3 +1,5 @@
+require "tmpdir"
+
 RSpec.configure do |config|
   config.around :example, :files do |example|
     Dir.mktmpdir { |path| Dir.chdir(path, &example) }
