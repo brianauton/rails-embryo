@@ -1,17 +1,9 @@
-module GeneratorSpecHelper
-  def use_temp_dir
-    around do |example|
-      Dir.mktmpdir { |path| Dir.chdir(path, &example) }
-    end
-  end
-
-  def suppress_stdout
-    around do |example|
-      expect(&example).to output.to_stdout
-    end
-  end
-end
-
 RSpec.configure do |config|
-  config.extend GeneratorSpecHelper
+  config.around :example, :files do |example|
+    Dir.mktmpdir { |path| Dir.chdir(path, &example) }
+  end
+
+  config.around :example, :stdout do |example|
+    expect(&example).to output.to_stdout
+  end
 end

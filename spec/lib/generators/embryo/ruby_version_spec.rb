@@ -1,10 +1,7 @@
 require "generators/embryo/ruby_version"
 
 module Embryo
-  describe RubyVersionGenerator do
-    use_temp_dir
-    suppress_stdout
-
+  describe RubyVersionGenerator, :files, :stdout do
     describe "#invoke_all" do
       it "creates the correct ruby version file" do
         RubyVersionGenerator.new.invoke_all
