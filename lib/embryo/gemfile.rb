@@ -8,12 +8,6 @@ module Embryo
       @data = File.exist?(path) ? File.read(path) : ""
     end
 
-    def remove_noise
-      @data = @data.each_line.select { |line| line[0] != "#" }.join
-      @data.gsub!(/\n\n+/, "\n\n")
-      @data.gsub!(/\n+$/, "\n")
-    end
-
     def require_gem(name, version, options = {})
       remove_gem name
       @data << "\n" unless @data[-1] == "\n"

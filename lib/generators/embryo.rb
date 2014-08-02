@@ -26,7 +26,9 @@ class EmbryoGenerator < Rails::Generators::Base
   private
 
   def clean_files
-    gemfile.remove_noise
+    gsub_file "Gemfile", /^#/, ""
+    gsub_file "Gemfile", /\n\n+/, "\n\n"
+    gsub_file "Gemfile", /\n+$/, "\n"
     filesystem.commit_changes
   end
 
