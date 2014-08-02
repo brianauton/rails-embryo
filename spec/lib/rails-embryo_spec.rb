@@ -73,7 +73,7 @@ describe EmbryoGenerator do
     expect { EmbryoGenerator.new.install force: true, bundle: false }.to output.to_stdout
   end
 
-  def with_files(files = {})
+  def with_files(files = {"Gemfile" => ""})
     Dir.mktmpdir do |path|
       Dir.chdir path do
         files.each { |name, data| File.write name, data }

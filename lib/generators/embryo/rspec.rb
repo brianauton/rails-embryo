@@ -1,14 +1,14 @@
+require "rails/generators"
+
 module Embryo
-  class Rspec
-    def initialize(filesystem)
-      @filesystem = filesystem
+  class RspecGenerator < Rails::Generators::Base
+    def install
+      gem "rspec-rails", "~> 3.0", group: :test
+      create_file "spec/spec_helper.rb", spec_helper_data
+      create_file "spec/rails_helper.rb", rails_helper_data
     end
 
-    def install
-      @filesystem.require_gem "rspec-rails", "~> 3.0", group: :test
-      @filesystem.write "spec/spec_helper.rb", spec_helper_data
-      @filesystem.write "spec/rails_helper.rb", rails_helper_data
-    end
+    private
 
     def spec_helper_data
 'RSpec.configure do |config|

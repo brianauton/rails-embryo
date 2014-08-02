@@ -1,20 +1,21 @@
+require "rails/generators"
+require "embryo/filesystem"
+
 module Embryo
-  class TemplateSupport
-    def initialize(filesystem)
-      @filesystem = filesystem
+  class TemplateSupportGenerator < Rails::Generators::Base
+    def install
+      gem "haml", "~> 4.0"
+      gem "haml-rails", ">= 0"
+      gem "bootstrap-sass", "~> 3.0"
+      create_file "app/views/layouts/application.html.haml", layout_data
+      create_file "app/views/layouts/_navigation.html.haml", navigation_data
+      create_file "app/views/layouts/_messages.html.haml", messages_data
+      create_file "app/assets/javascripts/application.js", javascript_data
+      create_file "app/assets/stylesheets/bootstrap-custom.css.scss", stylesheet_data
+      remove_file "app/views/layouts/application.html.erb"
     end
 
-    def install
-      @filesystem.require_gem "haml", "~> 4.0"
-      @filesystem.require_gem "haml-rails", ">= 0"
-      @filesystem.require_gem "bootstrap-sass", "~> 3.0"
-      @filesystem.write "app/views/layouts/application.html.haml", layout_data
-      @filesystem.write "app/views/layouts/_navigation.html.haml", navigation_data
-      @filesystem.write "app/views/layouts/_messages.html.haml", messages_data
-      @filesystem.write "app/assets/javascripts/application.js", javascript_data
-      @filesystem.write "app/assets/stylesheets/bootstrap-custom.css.scss", stylesheet_data
-      @filesystem.delete "app/views/layouts/application.html.erb"
-    end
+    private
 
     def layout_data
 '!!! 5
@@ -23,7 +24,7 @@ module Embryo
     %meta(charset="utf-8")
     %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    %title ' + @filesystem.application_human_name + '
+    %title ' + filesystem.application_human_name + '
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data_turbolinks_track" => true
     = csrf_meta_tags
@@ -44,7 +45,7 @@ module Embryo
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to "' + @filesystem.application_human_name + '", root_path, class: "navbar-brand"
+      = link_to "' + filesystem.application_human_name + '", root_path, class: "navbar-brand"
     .navbar-collapse.collapse
       %ul.nav.navbar-nav
         %li= link_to "Home", root_path
@@ -74,6 +75,10 @@ module Embryo
 @import "bootstrap/theme";
 body { padding-top: 70px; }
 '
+    end
+
+    def filesystem
+      Filesystem.new self
     end
   end
 end

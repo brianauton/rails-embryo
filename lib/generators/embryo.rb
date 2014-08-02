@@ -1,9 +1,12 @@
 require "rails/generators"
 require "generators/embryo/ruby_version"
 require "generators/embryo/default_view"
+require "generators/embryo/template_support"
+require "generators/embryo/rspec"
+require "generators/embryo/factory_girl"
+require "generators/embryo/capybara"
+require "generators/embryo/poltergeist"
 require "embryo/filesystem"
-require "embryo/test_support"
-require "embryo/template_support"
 
 class EmbryoGenerator < Rails::Generators::Base
   def install(force: false, bundle: false)
@@ -11,10 +14,12 @@ class EmbryoGenerator < Rails::Generators::Base
     clean_files
     add_embryo_gem
     invoke "embryo:ruby_version"
-    Embryo::TestSupport.new(filesystem).install
-    Embryo::TemplateSupport.new(filesystem).install
+    invoke "embryo:rspec"
+    invoke "embryo:factory_girl"
+    invoke "embryo:capybara"
+    invoke "embryo:poltergeist"
+    invoke "embryo:template_support"
     invoke "embryo:default_view"
-    filesystem.commit_changes
     update_bundle if bundle
   end
 
@@ -22,10 +27,11 @@ class EmbryoGenerator < Rails::Generators::Base
 
   def clean_files
     gemfile.remove_noise
+    filesystem.commit_changes
   end
 
   def add_embryo_gem
-    filesystem.require_gem "rails-embryo", "~> #{Rails::Embryo::VERSION}"
+    gem "rails-embryo", "~> #{Rails::Embryo::VERSION}"
   end
 
   def filesystem
