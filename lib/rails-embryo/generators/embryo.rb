@@ -1,7 +1,7 @@
 require "rails/generators"
 require "rails/generators/app_base"
+require "rails-embryo/generators/embryo/ruby_version"
 require "embryo/filesystem"
-require "embryo/ruby_version"
 require "embryo/test_support"
 require "embryo/template_support"
 require "embryo/default_view"
@@ -11,7 +11,7 @@ class EmbryoGenerator < Rails::Generators::Base
     @force = force || options.force?
     clean_files
     add_embryo_gem
-    Embryo::RubyVersion.new(filesystem).install
+    invoke "embryo:ruby_version"
     Embryo::TestSupport.new(filesystem).install
     Embryo::TemplateSupport.new(filesystem).install
     Embryo::DefaultView.new(filesystem).install
