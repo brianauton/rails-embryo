@@ -2,13 +2,8 @@ require "rails-embryo/generators/embryo/ruby_version"
 
 module Embryo
   describe RubyVersionGenerator do
-    around do |example|
-      Dir.mktmpdir { |path| Dir.chdir(path, &example) }
-    end
-
-    around do |example|
-      expect(&example).to output.to_stdout
-    end
+    use_temp_dir
+    suppress_stdout
 
     describe "#invoke_all" do
       it "creates the correct ruby version file" do
