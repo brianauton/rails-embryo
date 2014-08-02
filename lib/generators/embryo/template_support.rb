@@ -1,5 +1,4 @@
 require "rails/generators"
-require "embryo/filesystem"
 
 module Embryo
   class TemplateSupportGenerator < Rails::Generators::Base
