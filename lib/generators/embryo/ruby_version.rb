@@ -1,5 +1,4 @@
 require "rails/generators"
-require "rails/generators/base"
 require "embryo/filesystem"
 
 module Embryo

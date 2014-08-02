@@ -1,5 +1,4 @@
 require "rails/generators"
-require "rails/generators/app_base"
 require "generators/embryo/ruby_version"
 require "embryo/filesystem"
 require "embryo/test_support"
