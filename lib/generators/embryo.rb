@@ -9,7 +9,6 @@ require "generators/embryo/poltergeist"
 
 class EmbryoGenerator < Rails::Generators::Base
   def install(force: false, bundle: false)
-    clean_files
     add_embryo_gem
     invoke "embryo:ruby_version"
     invoke "embryo:rspec"
@@ -18,14 +17,15 @@ class EmbryoGenerator < Rails::Generators::Base
     invoke "embryo:poltergeist"
     invoke "embryo:template_support"
     invoke "embryo:default_view"
+    clean_files
   end
 
   private
 
   def clean_files
-    gsub_file "Gemfile", /^#/, ""
-    gsub_file "Gemfile", /\n\n+/, "\n\n"
-    gsub_file "Gemfile", /\n+$/, "\n"
+    gsub_file "Gemfile", /^#.*$/, "", verbose: false
+    gsub_file "Gemfile", /\n\n+/, "\n", verbose: false
+    append_to_file "Gemfile", "\n\n"
   end
 
   def add_embryo_gem
