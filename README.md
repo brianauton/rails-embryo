@@ -90,8 +90,15 @@ For acceptance testing,
 [Capybara](https://github.com/jnicklas/capybara) is installed, along
 with a simple end-to-end spec that uses it to test the `Welcome#index`
 action. [Poltergeist](https://github.com/teampoltergeist/poltergeist)
-is configured and ready for JavaScript-enabled testing; just add `js:
-true` to any RSpec `scenario` blocks that require JavaScript.
+is configured and ready for JavaScript-enabled testing; just add a `:js`
+metadata tag to any RSpec `feature` or `scenario` blocks that require
+JavaScript:
+
+```ruby
+feature "Customer searches for widgets" do
+  scenario "using the auto-suggest search box", :js do
+    # ...
+```
 
 #### Other Enhancements
 
