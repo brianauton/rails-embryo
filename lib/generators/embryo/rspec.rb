@@ -8,6 +8,7 @@ module Embryo
       gem "rspec-rails", "~> 3.0", group: :test
       create_file "spec/spec_helper.rb", spec_helper_data
       create_file "spec/rails_helper.rb", rails_helper_data
+      remove_dir "test"
     end
 
     private
