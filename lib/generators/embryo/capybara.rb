@@ -1,7 +1,9 @@
-require "rails/generators"
+require "rails-embryo"
 
 module Embryo
   class CapybaraGenerator < Rails::Generators::Base
+    include GeneratorHelpers::Hidden
+
     def install
       gem "capybara", "~> 2.0", group: :test
       gem "launchy", "~> 2.0", group: :test

@@ -1,7 +1,9 @@
-require "rails/generators"
+require "rails-embryo"
 
 module Embryo
   class RspecGenerator < Rails::Generators::Base
+    include GeneratorHelpers::Hidden
+
     def install
       gem "rspec-rails", "~> 3.0", group: :test
       create_file "spec/spec_helper.rb", spec_helper_data

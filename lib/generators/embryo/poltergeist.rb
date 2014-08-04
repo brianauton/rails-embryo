@@ -1,7 +1,9 @@
-require "rails/generators"
+require "rails-embryo"
 
 module Embryo
   class PoltergeistGenerator < Rails::Generators::Base
+    include GeneratorHelpers::Hidden
+
     def install
       gem "poltergeist", "~> 1.0", group: :test
       create_file "spec/support/poltergeist.rb", poltergeist_helper_data

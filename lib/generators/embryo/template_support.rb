@@ -1,7 +1,9 @@
-require "rails/generators"
+require "rails-embryo"
 
 module Embryo
   class TemplateSupportGenerator < Rails::Generators::Base
+    include GeneratorHelpers::Hidden
+
     def install
       gem "haml", "~> 4.0"
       gem "haml-rails", ">= 0"

@@ -1,7 +1,10 @@
+require "rails-embryo"
 require "rails/generators"
 
 module Embryo
   class DefaultViewGenerator < Rails::Generators::Base
+    include GeneratorHelpers::Hidden
+
     def install
       create_file "config/routes.rb", routes_data
       create_file "app/controllers/dashboard_controller.rb", controller_data
