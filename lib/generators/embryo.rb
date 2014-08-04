@@ -29,6 +29,6 @@ class EmbryoGenerator < Rails::Generators::Base
   end
 
   def add_embryo_gem
-    gem "rails-embryo", "~> #{Rails::Embryo::VERSION}"
+    gem "rails-embryo", "~> #{Rails::Embryo::VERSION}", group: :development
   end
 end
