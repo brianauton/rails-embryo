@@ -17,10 +17,12 @@ configurable in the future.
 * Ruby 1.9.3 or newer
 * Rails 4.1.4 or newer
 
-### Getting Started
+### Generating a New Application
 
-Make sure the gem is installed in your current environment (this will
-also install Rails 4.1.4 if it's not already present).
+To generate a new Rails application with all Rails Embryo features
+added, first make sure the gem is installed in your current
+environment (this will also install Rails 4.1.4 if it's not already
+present).
 
     gem install rails-embryo
 
@@ -53,16 +55,33 @@ Bootstrap-enhanced landing page.
 
     rails server
 
-### Running the Generators Directly
+### Generators Available in the Application
 
-You can also install the rails-embryo enhancements by adding the gem
+You can also install the Rails Embryo enhancements by adding the gem
 to an existing Rails application and running the "embryo" generator:
 
     rails generate embryo
 
+Once Rails Embryo has has been initialized in an application, more
+generators are available to add features to the app.
+
+#### Models
+
+To generate a new model, run the `embryo:model` generator with the
+same arguments you would pass to Rails' basic `model` generator.
+
+    rails generate embryo:model user name email age:integer
+
+A class, migration, spec and factory will all be generated for the
+model. All options available for the [basic model
+generator](http://railsguides.net/advanced-rails-model-generators/)
+are accepted.
+
 ### Enhancements Added
 
-All of the following enhancements are added by rails-embryo.
+All of the following enhancements are added to new applications by
+rails-embryo, and are used whenever possible by the other "embryo"
+generators.
 
 #### Views and Templating
 
