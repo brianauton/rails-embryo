@@ -1,3 +1,9 @@
+### Version 0.2.0
+2014-08-04
+
+* Add model generator
+* Minor fixes for basic app configuration
+
 ### Version 0.1.1
 2014-6-10
 
