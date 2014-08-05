@@ -20,6 +20,7 @@ describe EmbryoGenerator do
         expect(File.read "Gemfile").to include "launchy"
         expect(File.read "Gemfile").to include "haml-rails"
         expect(File.read "Gemfile").to include "bootstrap-sass"
+        expect(File.read "Gemfile").to include "devise"
       end
     end
 
@@ -31,6 +32,7 @@ describe EmbryoGenerator do
         expect(File.exist? "spec/support/factory_girl.rb").to be_truthy
         expect(File.exist? "spec/support/capybara.rb").to be_truthy
         expect(File.exist? "spec/support/poltergeist.rb").to be_truthy
+        expect(File.exist? "spec/support/devise.rb").to be_truthy
       end
     end
 

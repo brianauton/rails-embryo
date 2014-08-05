@@ -6,6 +6,7 @@ require "generators/embryo/rspec"
 require "generators/embryo/factory_girl"
 require "generators/embryo/capybara"
 require "generators/embryo/poltergeist"
+require "generators/embryo/devise"
 
 class EmbryoGenerator < Rails::Generators::Base
   def install(force: false, bundle: false)
@@ -17,6 +18,7 @@ class EmbryoGenerator < Rails::Generators::Base
     invoke "embryo:poltergeist"
     invoke "embryo:template_support"
     invoke "embryo:default_view"
+    invoke "embryo:devise"
     clean_files
   end
 

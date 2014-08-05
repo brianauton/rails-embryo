@@ -77,6 +77,18 @@ model. All options available for the [basic model
 generator](http://railsguides.net/advanced-rails-model-generators/)
 are accepted.
 
+#### Authenticated Models
+
+To generate a model that can be authenticated with
+[Devise](https://github.com/plataformatec/devise), use
+`embryo:model:authenticated`:
+
+    rails generate embryo:model:authenticated first_name last_name
+
+Authenticated models will automatically have an `email` field added and configured as the
+authentication key. To customize this or any other Devise behavior, edit the generated
+`config/initializers/devise.rb` along with the class and migration files for the new model.
+
 ### Enhancements Added
 
 All of the following enhancements are added to new applications by
