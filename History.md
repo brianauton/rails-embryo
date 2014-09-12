@@ -1,3 +1,8 @@
+### Version 0.2.1
+2014-08-05
+
+* Support for generating authenticated models with Devise
+
 ### Version 0.2.0
 2014-08-04
 
