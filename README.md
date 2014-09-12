@@ -15,13 +15,13 @@ configurable in the future.
 ### Requirements
 
 * Ruby 1.9.3 or newer
-* Rails 4.1.4 or newer
+* Rails 4.1.6 or newer
 
 ### Generating a New Application
 
 To generate a new Rails application with all Rails Embryo features
 added, first make sure the gem is installed in your current
-environment (this will also install Rails 4.1.4 if it's not already
+environment (this will also install Rails 4.1.6 if it's not already
 present).
 
     gem install rails-embryo
