@@ -7,6 +7,7 @@ require "generators/embryo/capybara"
 require "generators/embryo/poltergeist"
 require "generators/embryo/devise"
 require "generators/embryo/application"
+require "generators/embryo/postgres"
 
 class EmbryoGenerator < Rails::Generators::Base
   def install(force: false, bundle: false)
@@ -18,6 +19,7 @@ class EmbryoGenerator < Rails::Generators::Base
     invoke "embryo:default_view"
     invoke "embryo:devise"
     invoke "embryo:application"
+    invoke "embryo:postgres"
     clean_files
   end
 

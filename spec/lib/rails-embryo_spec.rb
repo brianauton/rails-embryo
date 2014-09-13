@@ -20,12 +20,14 @@ describe EmbryoGenerator do
         expect(File.read "Gemfile").to include "haml-rails"
         expect(File.read "Gemfile").to include "bootstrap-sass"
         expect(File.read "Gemfile").to include "devise"
+        expect(File.read "Gemfile").to include "pg"
       end
     end
 
     it "creates required config files" do
       with_files do
         install_new_generator
+        expect(File.exist? "config/database.yml.example").to be_truthy
         expect(File.exist? "spec/spec_helper.rb").to be_truthy
         expect(File.exist? "spec/rails_helper.rb").to be_truthy
         expect(File.exist? "spec/support/factory_girl.rb").to be_truthy
