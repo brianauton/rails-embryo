@@ -66,10 +66,14 @@ describe EmbryoGenerator do
     expect { EmbryoGenerator.new.install force: true, bundle: false }.to output.to_stdout
   end
 
-  def with_files(files = {"Gemfile" => ""})
+  def with_files(files = {})
+    defaults = {"Gemfile" => "", ".gitignore" => "", "config/environments/production.rb" => ""}
     Dir.mktmpdir do |path|
       Dir.chdir path do
-        files.each { |name, data| File.write name, data }
+        defaults.merge(files).each do |name, data|
+          FileUtils.mkdir_p File.dirname(name)
+          File.write name, data
+        end
         yield
       end
     end
