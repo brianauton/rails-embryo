@@ -9,6 +9,10 @@ module Embryo
         File.exist?(path) ? super : create_file(path, *args)
       end
 
+      def gitignore(path)
+        append_file ".gitignore", "/#{path}\n"
+      end
+
       def application_name
         if Rails.respond_to? :application
           Rails.application.class.parent_name.underscore

@@ -9,7 +9,7 @@ module Embryo
     def install
       create_file "config/secrets.yml", secrets_yml_data
       create_file "config/secrets.yml.example", secrets_yml_data
-      append_file ".gitignore", gitignore_data
+      gitignore "config/secrets.yml"
       duplicate_file "config/environments/staging.rb", "config/environments/production.rb"
     end
 
@@ -26,10 +26,6 @@ test:
 
     def new_secret
       SecureRandom.hex 64
-    end
-
-    def gitignore_data
-      "/config/secrets.yml\n"
     end
   end
 end

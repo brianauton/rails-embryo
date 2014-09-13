@@ -9,7 +9,7 @@ module Embryo
       gem "pg"
       create_file "config/database.yml", database_yml_data
       create_file "config/database.yml.example", database_yml_data
-      append_file ".gitignore", gitignore_data
+      gitignore "config/database.yml"
     end
 
     private
@@ -27,10 +27,6 @@ development:
   <<: *default
   database: #{application_name}_development
 "
-    end
-
-    def gitignore_data
-      "/config/database.yml\n"
     end
   end
 end
