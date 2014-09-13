@@ -67,7 +67,7 @@ describe EmbryoGenerator do
   end
 
   def with_files(files = {})
-    defaults = {"Gemfile" => "", ".gitignore" => "", "config/environments/production.rb" => ""}
+    defaults = {"Gemfile" => ""}
     Dir.mktmpdir do |path|
       Dir.chdir path do
         defaults.merge(files).each do |name, data|

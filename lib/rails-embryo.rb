@@ -1,5 +1,6 @@
 require "rails-embryo/version"
 require "rails-embryo/generator_helpers/hidden"
+require "rails-embryo/generator_helpers/files"
 require "generators/embryo"
 require "generators/embryo/model"
 require "generators/embryo/model/authenticated"

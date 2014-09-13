@@ -4,12 +4,13 @@ require "securerandom"
 module Embryo
   class ApplicationGenerator < Rails::Generators::Base
     include GeneratorHelpers::Hidden
+    include GeneratorHelpers::Files
 
     def install
       create_file "config/secrets.yml", secrets_yml_data
       create_file "config/secrets.yml.example", secrets_yml_data
       append_file ".gitignore", gitignore_data
-      create_file "config/environments/staging.rb", File.read("config/environments/production.rb")
+      duplicate_file "config/environments/staging.rb", "config/environments/production.rb"
     end
 
     private
