@@ -17,50 +17,32 @@ configurable in the future.
 * Ruby 1.9.3 or newer
 * Rails 4.1.6 or newer
 
-### Generating a New Application
+### Getting Started
 
-To generate a new Rails application with all Rails Embryo features
-added, first make sure the gem is installed in your current
-environment (this will also install Rails 4.1.6 if it's not already
-present).
+The rails-embryo gem provides an `embryo` generator that is designed to enhance a
+newly-generated Rails application. This guide assumes you've created a new Rails application
+using the `rails new` command, and that you've changed into the application directory.
 
-    gem install rails-embryo
+Add "rails-embryo" to the new application's Gemfile and install it via Bundler:
 
-Once rails-embryo is installed, you can run "rails-embryo new" the
-same way you would normally run "rails new".
-
-    rails-embryo new my_project
-
-This will create a new application called "My Project" in a directory
-called my_project. It's the same skeleton Rails app you would get from
-"rails new", but with additional rails-embryo-specific enhancements
-(described below).
-
-The enhancements include .ruby-version and .ruby-gemset files, so if
-your system is configured with a Ruby version manager that looks for
-those files, you should be able to change into the project directory
-and then run Bundler to configure the gems for your new application.
-
-    cd my_project
+    echo "gem 'rails-embryo'" >> Gemfile
     bundle install
 
-Your new application will have a working test suite, and you can run
-it by invoking RSpec (or Rake, but RSpec is faster).
+Now you're ready to generate the rails-embryo enhancements:
+
+    rails generate embryo
+
+To verify that the rails-embryo enhancements have been installed, you can run the generated
+RSpec suite by invoking RSpec (or Rake, but RSpec is faster).
 
     rspec
 
-It's also ready to run with the Rails server, so fire up the server
-and visit localhost:3000 to see your application's
-Bootstrap-enhanced landing page.
+You can also see your application's new Bootstrap-enhanced landing page by running a
+development server and visiting `http://localhost:3000/`.
 
     rails server
 
-### Generators Available in the Application
-
-You can also install the Rails Embryo enhancements by adding the gem
-to an existing Rails application and running the "embryo" generator:
-
-    rails generate embryo
+### Other Generators
 
 Once Rails Embryo has has been initialized in an application, more
 generators are available to add features to the app.
@@ -133,15 +115,22 @@ feature "Customer searches for widgets" do
 
 #### Other Enhancements
 
-A .ruby-version file is created that specifies Ruby 2.1.2, and a
-.ruby-gemset file is created with a gemset that has the same name as
-your application directory. These can be safely ignored on systems
-that aren't automatically configured to switch Ruby versions and/or
-gemsets based on these files.
-
 Some files that normally have lots of documentation comments added
 when they are first generated (e.g. Gemfile, routes.rb, and others)
 will have all comments removed by rails-futurizer. These comments may
 be helpful for new users, but they may be more of a distraction for
 experienced developers, and they tend to get out of date as Rails and
 other gems are updated.
+
+#### For Existing Rails Applications
+
+You can attempt to run the `embryo` generator on an existing application that has been
+modified since it was first generated, but rails-embryo makes little attempt to coexist with
+those modifications, so you may get undesirable results.
+
+#### Using With Ruby Version Managers (rvm, rbenv, etc.)
+
+The `embryo` generator does not create configuration for any Ruby version manager you might be
+using. If you're using a Ruby version manager, configure your Ruby version and gemset as
+desired for your application as a part of generating the application before running the
+`embryo` generator.

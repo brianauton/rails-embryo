@@ -1,34 +1,11 @@
 #!/usr/bin/env ruby
-require "rake"
-
-task "embryo_new", :path do |task, args|
-  verbose false
-  path = args[:path]
-  if File.exists?(path) && (Dir.entries(path) - [".", ".."]).any?
-    puts "Rerunning Rails app generator in existing application..."
-    sh "rails new #{path} --skip-bundle"
-    puts "Reapplying Embryo extensions to existing application..."
-    sh "cd #{path}; rails g embryo"
-  else
-    puts "Generating standard Rails application..."
-    sh "rails new #{path} --skip-bundle"
-    puts "Adding Embryo extensions to generated application..."
-    sh "cd #{path}; rails g embryo --force"
-  end
-end
-
-if ARGV[0] == "new"
-  if ARGV[1]
-    Rake.application["embryo_new"].invoke ARGV[1]
-  else
-    puts 'Missing required argument ("rails-embryo help" for info)'
-  end
-else
-  puts 'Usage: rails-embryo COMMAND [ARGS]
-
-Available commands:
-  help      Show this message
-  new PATH  Create a new Rails application in PATH with rails-embryo
-            enhancements. "rails-embryo new my_app" creates a new
-            application called MyApp in "./my_app"'
-end
+puts
+puts "    NOTICE:"
+puts
+puts "    The rails-embryo command is no longer used to initialize"
+puts "    new applications."
+puts
+puts "    Instead, install the 'rails-embryo' gem in an existing"
+puts "    application (or one freshly created with 'rails-new'),"
+puts "    and then run 'rails generate embryo'."
+puts
