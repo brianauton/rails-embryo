@@ -28,12 +28,21 @@ Add "rails-embryo" to the new application's Gemfile and install it via Bundler:
     echo "gem 'rails-embryo'" >> Gemfile
     bundle install
 
-Now you're ready to generate the rails-embryo enhancements:
+Now you're ready to generate the rails-embryo enhancements. It's recommended to provide the
+`--force` option to the generator, since some of the files from your newly-generated Rails
+application will need to be overwritten.
 
-    rails generate embryo
+    rails generate embryo --force
 
-To verify that the rails-embryo enhancements have been installed, you can run the generated
-RSpec suite by invoking RSpec (or Rake, but RSpec is faster).
+To verify that the rails-embryo enhancements have been installed, you'll need to update your
+installed Gems again, and then initialize the database. You may want to look at the generated
+`config/database.yml`, which assumes a local Postgres server is available, and make any
+necessary changes to that file first.
+
+    bundle install
+    rake db:create
+
+Now you can run the generated RSpec suite by invoking RSpec (or Rake, but RSpec is faster).
 
     rspec
 
