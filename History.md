@@ -1,3 +1,10 @@
+### Version 0.3.0
+2014-09-14
+
+* Remove standalone executable in favor of running the 'embryo' generator
+* Configure Postgres automatically
+* Generate a working JavaScript-enabled spec
+
 ### Version 0.2.1
 2014-08-05
 
