@@ -48,7 +48,7 @@ end
 'require "rails_helper.rb"
 
 feature "Dashboard" do
-  scenario "index view" do
+  scenario "index view", :js do
     visit "/"
     expect(page).to have_content "Welcome"
   end

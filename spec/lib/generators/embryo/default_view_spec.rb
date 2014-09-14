@@ -22,6 +22,11 @@ module Embryo
         DefaultViewGenerator.new.invoke_all
         expect(File.read "spec/features/dashboard_spec.rb").to include "visit \"/\""
       end
+
+      it "creates a javascript-enabled feature" do
+        DefaultViewGenerator.new.invoke_all
+        expect(File.read "spec/features/dashboard_spec.rb").to include ", :js"
+      end
     end
   end
 end

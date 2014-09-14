@@ -21,6 +21,7 @@ describe EmbryoGenerator do
         expect(File.read "Gemfile").to include "bootstrap-sass"
         expect(File.read "Gemfile").to include "devise"
         expect(File.read "Gemfile").to include "pg"
+        expect(File.read "Gemfile").to include "database_cleaner"
       end
     end
 
@@ -34,6 +35,7 @@ describe EmbryoGenerator do
         expect(File.exist? "spec/support/capybara.rb").to be_truthy
         expect(File.exist? "spec/support/poltergeist.rb").to be_truthy
         expect(File.exist? "spec/support/devise.rb").to be_truthy
+        expect(File.exist? "spec/support/database_cleaner.rb").to be_truthy
       end
     end
 
