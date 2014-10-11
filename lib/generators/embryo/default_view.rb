@@ -33,7 +33,7 @@ end
     def controller_spec_data
 'require "rails_helper.rb"
 
-describe DashboardController do
+RSpec.describe DashboardController do
   describe "#index" do
     it "succeeds" do
       get :index
@@ -47,7 +47,7 @@ end
     def feature_spec_data
 'require "rails_helper.rb"
 
-feature "Dashboard" do
+RSpec.feature "Dashboard" do
   scenario "index view", :js do
     visit "/"
     expect(page).to have_content "Welcome"

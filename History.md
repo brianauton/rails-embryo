@@ -1,3 +1,9 @@
+### Version 0.3.1
+Not yet released
+
+* Configure RSpec in zero monkey patching mode
+* Bugfixes
+
 ### Version 0.3.0
 2014-09-14
 

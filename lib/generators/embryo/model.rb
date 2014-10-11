@@ -22,7 +22,7 @@ end
     def spec_data
 'require "rails_helper"
 
-describe ' + class_name + ' do
+RSpec.describe ' + class_name + ' do
   it "initializes successfully" do
     expect(build :' + factory_name + ').to be_valid
   end
