@@ -3,15 +3,8 @@ require "active_support/core_ext/string"
 
 module Embryo
   RSpec.describe ControllerGenerator, :files, :stdout do
-    let(:generator) { ControllerGenerator.new [generator_argument] }
-
-    before do
-      allow(generator).to receive :generate
-      generator.invoke_all
-    end
-
     describe "generating a basic controller" do
-      let(:generator_argument) { "widget" }
+      before { create_generator("widget").invoke_all }
 
       it "generates the correct controller" do
         path = "app/controllers/widgets_controller.rb"
@@ -42,7 +35,7 @@ module Embryo
     end
 
     describe "generating a namespaced controller" do
-      let(:generator_argument) { "admin/local/widget" }
+      before { create_generator("admin/local/widget").invoke_all }
 
       it "generates the correct controller" do
         path = "app/controllers/admin/local/widgets_controller.rb"
@@ -69,6 +62,12 @@ module Embryo
             end
           end
         CODE
+      end
+    end
+
+    def create_generator(argument)
+      ControllerGenerator.new([argument]).tap do |generator|
+        allow(generator).to receive :generate
       end
     end
   end
