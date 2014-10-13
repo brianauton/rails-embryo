@@ -12,12 +12,16 @@ module Embryo
       @model
     end
 
-    def method_code(name, *code)
-      ["def #{name}", *indent(code), "end"]
-    end
-
     def spec_group_code(name, *specs)
       ["describe #{name.inspect} do", *indent(specs), "end"]
+    end
+
+    def spec_context_code(name, *specs)
+      ["context #{name.inspect} do", *indent(specs), "end"]
+    end
+
+    def spec_before_code(*code)
+      ["before do", *indent(code), "end"]
     end
 
     def spec_code(name, *code)
