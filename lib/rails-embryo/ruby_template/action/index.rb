@@ -3,7 +3,7 @@ require "rails-embryo/ruby_template/action"
 module Embryo
   class RubyTemplate::Action::Index < RubyTemplate::Action
     def controller_method_code
-      method_code :index, "@#{@plural} = #{@collection}.all"
+      method_code :index, "@#{model.plural} = #{model.class_name}.all"
     end
 
     def controller_spec_code

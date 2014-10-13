@@ -2,6 +2,7 @@ require "rails/generators"
 require "rails-embryo/ruby_template/controller"
 require "rails-embryo/ruby_template/controller_spec"
 require "rails-embryo/ruby_template/action/index"
+require "rails-embryo/ruby_template/model"
 
 module Embryo
   class ControllerGenerator < Rails::Generators::NamedBase
@@ -13,16 +14,20 @@ module Embryo
     private
 
     def controller_template
-      @controller_template ||= RubyTemplate::Controller.new name, action_templates
+      @controller_template ||= RubyTemplate::Controller.new model, action_templates
     end
 
     def spec_template
-      @spec_template ||= RubyTemplate::ControllerSpec.new name, action_templates
+      @spec_template ||= RubyTemplate::ControllerSpec.new model, action_templates
+    end
+
+    def model
+      @model ||= RubyTemplate::Model.new name
     end
 
     def action_templates
       [
-       RubyTemplate::Action::Index.new(name),
+       RubyTemplate::Action::Index.new(model),
       ]
     end
   end
