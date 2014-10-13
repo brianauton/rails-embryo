@@ -15,7 +15,7 @@ module Embryo
 
     def code
       [
-       "class #{@model.plural_class_name}Controller < ActionController",
+       "class #{@model.plural_class_name}Controller < ApplicationController",
        *indent(@action_templates.map(&:controller_method_code)),
        "end"
       ]

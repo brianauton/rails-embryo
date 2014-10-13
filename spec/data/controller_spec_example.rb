@@ -1,5 +1,10 @@
-class Admin::Local::WidgetsController < ActionController
-  def index
-    @widgets = Admin::Local::Widget.all
+require 'rails_helper'
+
+RSpec.describe WidgetsController do
+  describe "#index" do
+    it "succeeds" do
+      get :index
+      expect(response).to be_success
+    end
   end
 end

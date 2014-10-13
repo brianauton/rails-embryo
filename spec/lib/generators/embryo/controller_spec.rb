@@ -13,7 +13,7 @@ module Embryo
 
       it "generates the correct controller spec" do
         path = "spec/controllers/widgets_controller_spec.rb"
-        expect(File.read path).to eq sample_file_data("namespaced_controller_example.rb")
+        expect(File.read path).to eq sample_file_data("controller_spec_example.rb")
       end
     end
 
@@ -22,7 +22,7 @@ module Embryo
 
       it "generates the correct controller" do
         path = "app/controllers/admin/local/widgets_controller.rb"
-        expect(File.read path).to eq sample_file_data("controller_spec_example.rb")
+        expect(File.read path).to eq sample_file_data("namespaced_controller_example.rb")
       end
 
       it "generates the correct controller spec" do

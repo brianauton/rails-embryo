@@ -1,4 +1,4 @@
-class WidgetsController < ActionController
+class WidgetsController < ApplicationController
   def index
     @widgets = Widget.all
   end
