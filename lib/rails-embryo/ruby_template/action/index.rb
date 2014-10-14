@@ -8,6 +8,10 @@ module Embryo
 
     def controller_spec_code
       spec_group_code "#index",
+        spec_code("assigns the collection of #{model.plural}",
+          "#{model.singular} = create :#{model.symbol}",
+          "get :index",
+          "expect(assigns :#{model.plural}).to eq [#{model.singular}]"),
         spec_code("succeeds", "get :index", "expect(response).to be_success")
     end
   end

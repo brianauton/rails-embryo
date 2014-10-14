@@ -13,11 +13,11 @@ module Embryo
     end
 
     def spec_group_code(name, *specs)
-      ["describe #{name.inspect} do", *indent(specs), "end"]
+      ["describe #{name.inspect} do", *indent_separated(specs), "end"]
     end
 
     def spec_context_code(name, *specs)
-      ["context #{name.inspect} do", *indent(specs), "end"]
+      ["context #{name.inspect} do", *indent_separated(specs), "end"]
     end
 
     def spec_before_code(*code)

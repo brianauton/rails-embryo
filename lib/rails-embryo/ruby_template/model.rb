@@ -30,6 +30,14 @@ module Embryo
       def plural_class_name
         class_name.pluralize
       end
+
+      def symbol
+        path.gsub("/", "_")
+      end
+
+      def plural_symbol
+        symbol.pluralize
+      end
     end
   end
 end

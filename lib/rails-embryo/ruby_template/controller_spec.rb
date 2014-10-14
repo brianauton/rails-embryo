@@ -18,7 +18,7 @@ module Embryo
        "require 'rails_helper'",
        "",
        "RSpec.describe #{@model.plural_class_name}Controller do",
-       *indent(@action_templates.map(&:controller_spec_code)),
+       *indent_separated(@action_templates.map(&:controller_spec_code)),
        "end"
       ]
     end
