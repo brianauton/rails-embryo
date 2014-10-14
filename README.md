@@ -80,6 +80,18 @@ Authenticated models will automatically have an `email` field added and configur
 authentication key. To customize this or any other Devise behavior, edit the generated
 `config/initializers/devise.rb` along with the class and migration files for the new model.
 
+#### Controllers
+
+To generate a controller and an associated spec file, run the `embryo:controller` generator
+with the name of the model.
+
+    rails generate embryo:controller user
+
+The above command will generate the files `app/models/users_controller.rb` and
+`spec/models/users_controller_spec.rb`. The generator assumes that the named model and other
+related elements (migration, factory, view templates, and routes) already exist, so the
+generated controller specs may fail if you haven't created those yet.
+
 ### Enhancements Added
 
 All of the following enhancements are added to new applications by

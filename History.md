@@ -1,6 +1,7 @@
 ### Version 0.3.1
-Not yet released
+2014-10-14
 
+* Add controller generator
 * Configure RSpec in zero monkey patching mode
 * Bugfixes
 
