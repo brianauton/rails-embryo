@@ -4,7 +4,7 @@ module Embryo
   class RubyTemplate
     class Model
       def initialize(name)
-        @name = name
+        @name = name.singularize
       end
 
       def path
