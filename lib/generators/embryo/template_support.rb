@@ -72,7 +72,8 @@ module Embryo
     end
 
     def stylesheet_data
-'@import "bootstrap";
+'@import "bootstrap-sprockets";
+@import "bootstrap";
 @import "bootstrap/theme";
 body { padding-top: 70px; }
 '
