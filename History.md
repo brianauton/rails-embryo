@@ -1,3 +1,8 @@
+### Version 0.3.2
+2014-10-17
+
+* Support Rails 4.2
+
 ### Version 0.3.1
 2014-10-14
 
