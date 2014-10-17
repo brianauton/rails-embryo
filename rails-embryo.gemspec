@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.files = Dir.glob("lib/**/*") + ["README.md", "History.md", "License.txt"]
   s.require_path = "lib"
   s.executables = ["rails-embryo"]
-  s.add_dependency "rails", "~> 4.1.6"
+  s.add_dependency "rails", "~> 4.1"
   s.add_development_dependency "rspec", "~> 3.1.0"
   s.add_development_dependency "rake", "~> 0"
 end
